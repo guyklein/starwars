@@ -22,14 +22,8 @@ function App(props) {
         <div>
             <SearchBar
                 onSearch={(searchValue) => {
-                    // dispatch(clearStarShips());
-                    // dispatch(clearResults());
-                    if(searchValue !== '') {
-                        dispatch(searchStarWarsCharacter(searchValue));
-                    }
-                    else {
-                        dispatch(searchStarWarsCharacter(''));
-                    }
+                    dispatch(clearStarShips());
+                    dispatch(searchStarWarsCharacter(searchValue));
                 }}
             />
            <CharactersList
