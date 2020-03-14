@@ -5,9 +5,7 @@ import {Provider, useDispatch, useSelector} from 'react-redux';
 import {store} from "./Store";
 import {getAllStarWareCharacters, searchStarWarsCharacter, selectCharacter} from './redux/starWarsActions';
 import CharactersList from './Components/CharactersList';
-import {getVisibleResults, useResults} from './redux/results';
-import {clearStarShips} from './redux/starShipsActions';
-import {clearResults} from './redux/resultsActionCreators';
+import {getVisibleResults} from './redux/results';
 import './style.css';
 
 function App(props) {
