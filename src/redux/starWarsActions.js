@@ -21,7 +21,9 @@ const getStarShipByCharacter = (character) => (dispatch, getState) => {
         character.starships.map(starshipUrl => StarWarsRequests.getStarWarsStarShip(starshipUrl))
     ).then(results => {
         dispatch(updateStarShips(results));
-    })
+        // save the state
+        dispatch(actions.saveState());
+    });
 };
 
 
