@@ -22,7 +22,6 @@ function App(props) {
         <div>
             <SearchBar
                 onSearch={(searchValue) => {
-                    dispatch(clearStarShips());
                     dispatch(searchStarWarsCharacter(searchValue));
                 }}
             />
