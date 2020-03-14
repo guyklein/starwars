@@ -33,10 +33,10 @@ const rowRenderer = ({
             onClick={() => setSelectedCharacter(list[index])}
         >
             <span className={`${charactersListRowBaseClass}__name`}>{list[index].name}</span>
-            <CharacterInfo
-                character={list[index]}
+            { selected && <CharacterInfo
+                character={selectedCharacter}
                 isSelected={selected}
-            />
+            />}
         </div>
     );
 };
