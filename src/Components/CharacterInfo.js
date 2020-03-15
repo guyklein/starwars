@@ -1,19 +1,13 @@
-import React, {useEffect} from "react";
-import {useDispatch, useSelector} from 'react-redux';
-import {starShipsSelector} from '../redux/starShips';
-import {getStarShipByCharacter} from '../redux/starWarsActions';
+import React from "react";
+import {useSelector} from 'react-redux';
+import {starShipsSelector} from '../redux/Selectors/starShips';
 
 const baseClass = "character__info";
 
-const CharacterInfo = ({ character, isSelected }) => {
+const CharacterInfo = ({ character }) => {
     const starShips = useSelector(starShipsSelector);
-    const dispatch = useDispatch();
-    useEffect(() => {
-        if(isSelected) {
-            dispatch(getStarShipByCharacter(character));
-        }
-    }, [isSelected]);
-    return (
+
+    return character ? (
         <div className={baseClass}>
             <h4 className={`${baseClass}__title`}>
                 {`${character.name}'s starships:`}
@@ -28,7 +22,7 @@ const CharacterInfo = ({ character, isSelected }) => {
                 ))}
             </ul>
         </div>
-    );
+    ) : null;
 };
 
 export default CharacterInfo;

@@ -1,16 +1,16 @@
 import { StarWarsRequests } from '../services/swapi';
-import {updateResults} from './resultsActionCreators';
-import {clearStarShips, updateStarShips} from './starShipsActions';
+import {updateResults} from './ActionCreators/resultsActionCreators';
+import {clearStarShips, updateStarShips} from './ActionCreators/starShipsActionCreators';
 import actions from '../Actions/PersistentStorageActions';
-import {updateSelectedCharacter} from './selectedCharacterActions';
-import {updateSearchTerm} from './searchTermActionCreators';
+import {updateSelectedCharacter} from './ActionCreators/selectedCharacterActionCreators';
+import {updateSearchTerm} from './ActionCreators/searchTermActionCreators';
 
 const searchStarWarsCharacter = (name) => (dispatch, getState) => {
     dispatch(updateSearchTerm(name));
 };
 
-const getAllStarWareCharacters = () => (dispatch) => {
-    StarWarsRequests.getAllStarWarsCharacters().then((result) => {
+const getAllStarWarsCharacters = () => (dispatch) => {
+    return StarWarsRequests.getAllStarWarsCharacters().then((result) => {
         //update the list with a dispatch
         dispatch(updateResults(result));
     });
@@ -40,7 +40,7 @@ const selectCharacter = (character) => (dispatch) => {
 
 
 export {
-    getAllStarWareCharacters,
+    getAllStarWarsCharacters,
     getStarShipByCharacter,
     searchStarWarsCharacter,
     selectCharacter,

@@ -1,45 +1,11 @@
 import React, {useEffect, useState, useRef} from "react";
-import classNames from "classnames";
 import {List} from "react-virtualized";
-import CharacterInfo from "./CharacterInfo";
 import {useSelector} from 'react-redux';
-import {selectedCharacterSelector} from '../redux/selectedCharacter';
+import {selectedCharacterSelector} from '../redux/Selectors/selectedCharacter';
+import {SearchResult} from './SearchResult';
 
 const charactersBaseClass = "characters";
 const charactersListBaseClass = `${charactersBaseClass}__list`;
-const charactersListRowBaseClass = `${charactersListBaseClass}__row`;
-
-const rowRenderer = ({
-                         key, // Unique key within array of rows
-                         index, // Index of row within collection
-                         isScrolling, // The List is currently being scrolled
-                         isVisible, // This row is visible within the List (eg it is not an overscanned row)
-                         parent, // Reference to the parent List (instance)
-                         style, // Style object to be applied to row (to position it)
-                     }) => {
-    const {
-        list,
-        selectedCharacter,
-        setSelectedCharacter,
-    } = parent.props;
-
-    const selected = selectedCharacter.url === list[index].url;
-
-    return (
-        <div
-            className={classNames(charactersListRowBaseClass, {[`${charactersListRowBaseClass}--selected`]: selected})}
-            key={key}
-            style={style}
-            onClick={() => setSelectedCharacter(list[index])}
-        >
-            <span className={`${charactersListRowBaseClass}__name`}>{list[index].name}</span>
-            { selected && <CharacterInfo
-                character={selectedCharacter}
-                isSelected={selected}
-            />}
-        </div>
-    );
-};
 
 const CharactersList = ({list = [], onSelect}) => {
     const ref = useRef(null);
@@ -51,7 +17,7 @@ const CharactersList = ({list = [], onSelect}) => {
             ref.current.recomputeRowHeights();
             onSelect(selectedCharacter);
         }
-    }, [selectedCharacter]);
+    }, [selectedCharacter, onSelect]);
 
     return (
         <div className={charactersBaseClass}>
@@ -63,10 +29,16 @@ const CharactersList = ({list = [], onSelect}) => {
                 width={300}
                 height={200}
                 rowCount={list.length}
-                rowHeight={({index}) => list[index].url === selectedCharacter.url ? selectedCharacter.starships.length * 20 + 46 : 20}
-                rowRenderer={rowRenderer}
-                selectedCharacter={selectedCharacter}
-                setSelectedCharacter={setSelectedCharacter}
+                rowHeight={20}
+                rowRenderer={({style, index}) =>
+                    <SearchResult
+                        currentCharacter={list[index]}
+                        key={list[index].url}
+                        selectedCharacter={selectedCharacter}
+                        setSelectedCharacter={setSelectedCharacter}
+                        style={style}
+                    />
+                }
             />
         </div>
     );

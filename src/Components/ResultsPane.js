@@ -1,26 +1,20 @@
-import React from "react";
-import SearchResult from "./SearchResult";
+import React, {useEffect} from "react";
 import {useSelector} from "react-redux";
-import {useResults} from "../redux/Results";
+import {getVisibleResults} from "../redux/Selectors/results";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-const ResultsPane = ({search}) => {
-    const results = useSelector(useResults);
+const ResultsPane = ({search, onResults, children}) => {
+    const results = useSelector(getVisibleResults);
+    useEffect(() => {
+        if (search.result) {
+            onResults(search.result);
+        }
+    }, [search.result]);
     return (
         <div className="results-container">
-            {search.loading && 'loading...'}
+            {search.loading && <CircularProgress/>}
             {search.error && <div>Error: {search.error.message}</div>}
-            {results && (
-                <ul>
-                    {
-                        results.map((product, index) => (
-                            <SearchResult
-                                key={index}
-                                product={product}
-                            />
-                        ))
-                    }
-                </ul>
-            )}
+            {search.result && results && children }
         </div>)
 };
 

@@ -1,4 +1,4 @@
-import {actionTypes} from "../redux/starShipsActions";
+import {actionTypes} from "../redux/ActionCreators/starShipsActionCreators";
 
 const initialState = {};
 

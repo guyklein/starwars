@@ -21,8 +21,12 @@ h1, p {
     text-overflow: ellipsis;
 }
 
-.characters__list__row--selected .characters__list__row__name, .characters__list__row__name:hover {
+.characters__list__row--selected .characters__list__row__name {
     background-color: blue;
+}
+
+.characters__list__row__name:hover {
+    background-color: lightblue;
 }
 
 .character__info {
@@ -37,4 +41,8 @@ h1, p {
 
 .character__info__starship_list {
     overflow: auto;
+}
+
+.input-search-bar {
+    width: 300px;
 }

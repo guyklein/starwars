@@ -13,10 +13,10 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "@material-ui/core": "^4.9.3",
+    "@material-ui/icons": "^4.9.1",
     "awesome-debounce-promise": "^2.1.0",
-    "axios": "^0.19.2",
     "classnames": "2.2.6",
-    "lodash.debounce": "4.0.8",
     "react": "^16.12.0",
     "react-async-hook": "^3.6.1",
     "react-dom": "^16.12.0",

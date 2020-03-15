@@ -1,4 +1,4 @@
-import {actionTypes} from "../redux/selectedCharacterActions";
+import {actionTypes} from "../redux/ActionCreators/selectedCharacterActionCreators";
 
 const initialState = {};
 

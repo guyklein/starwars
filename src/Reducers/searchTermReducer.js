@@ -1,4 +1,4 @@
-import {actionTypes} from "../redux/searchTermActionCreators";
+import {actionTypes} from "../redux/ActionCreators/searchTermActionCreators";
 
 const initialState = '';
 
